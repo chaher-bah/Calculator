@@ -2,27 +2,27 @@
 body{
     background-color: #e9e4d679;
     display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr ;
     place-items: center;
     font-family: "League Spartan", system-ui, sans-serif;
     font-size: 1.1rem;
     line-height: 1.2;
     color: #63655a;
-    zoom: 150%;
+    zoom: 130%;
     position: relative;
 }
 h2{
+    grid-area: 1/2/2/3;
     font-weight: bolder;
-    grid-row: 1;
-    grid-column: 2;
+    z-index: 1;
 }
 #heart1{
-    grid-row: 1;
-    grid-column: 1;
+    grid-area: 1/2/2/3;
     margin-right: -180px;
 }
 #heart2{
-    grid-row:1;
-    grid-column: 3;
+    grid-area: 1/2/2/3;
     margin-left: -180px;
 }
 input {
@@ -32,8 +32,12 @@ input {
     border-radius: 1.5cap;
     margin-inline:1px;
 }
-.oprbtn{
-    background-color: #b78666;
+.oprbtn{background-color: #b78666;}
+.calc{
+    grid-area: 3 / 2 / 3 / 3;
+    position:absolute;
+    margin-top: 150px;
+    zoom: 100%;
 }
 form{
     display: grid;
