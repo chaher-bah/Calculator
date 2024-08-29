@@ -2,9 +2,13 @@
 
 This project is a simple calculator built using PHP and CSS. It allows users to perform basic arithmetic operations such as addition, subtraction, multiplication, and division.
 The objective of this project is to get used to working with different web technologies and develop a simple app.
-<h2>Screenshot</h2>
-<img src="https://github.com/chaher-bah/Calculator/assets/114258465/e8af45f5-59d1-4fe8-be22-0bea2db79e39" alt="Screenshot of the calculator" style="width:200px;border-radius:5px">
+<h2>Screenshot <i style="font-size:70%">[Upgraded Ver]</i></h2>
+<div style="display:flex;flex-direction:column;align-items:center;gap:1rem">
+<u style="align-text:center">wide Screen Version</u>
+<img src="https://github.com/user-attachments/assets/81a2d251-463b-437c-bf3b-eb511f6f8dfe" alt="Screenshot of the calculator" style="width:100rem;border-radius:5px">
+<u style="align-text:center">Mobile Version</u>
 
+<img src=https://github.com/user-attachments/assets/5a87c82d-129b-4b30-afbe-fac4a9759ff6 alt="Screenshot of the calculator" style="width:20rem;border-radius:5px;"></div>
 <h2>How to use:</h2>
 * You can use MAMP or XAMPP or PHP local server <br>
 * If u select MAMP u must go under htdocs repository and add the files.<br>
