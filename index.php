@@ -1,51 +1,46 @@
 <?php
-    $result = "";
-    $operations = isset($_COOKIE['operations']) ? json_decode($_COOKIE['operations'], true) : [];
+session_start();
 
-    if(isset($_POST['clear'])) {
-        $result = "";
-        setcookie('num', '', time() - 3600, "/");
-        setcookie('op', '', time() - 3600, "/");
-    }
-    elseif (isset($_POST['num'])) {
-        $result .= $_POST['num'];
-    }
-    elseif (isset($_POST['op'])){
-        $result .= $_POST['op'];
-        setcookie('num', floatval($_POST['current_input']), time()+120, "/");
-        setcookie('op', $_POST['op'], time()+120, "/");
-    }
-    elseif (isset($_POST['result'])){
-        if(isset($_COOKIE['num']) && isset($_COOKIE['op'])) {
-            $num = floatval($_COOKIE['num']);
-            $op = $_COOKIE['op'];
-            $input = floatval($_POST['current_input']);
-            $operation = "$num $op $input";
-            switch($op){
-                case "+":
-                    $result = $num + $input;
-                    break;
-                case "-":
-                    $result = $num - $input;
-                    break;
-                case "*":
-                    $result = $num * $input;
-                    break;
-                case "/":
-                    if($input != 0) {
-                        $result = $num / $input;
-                    } else {
-                        $result = "Error: Division by zero!";
-                    }
-                    break;
-                default :
-                    $result = "Error: Invalid operator.";
-            }
-            $operations[] = ["operation" => $operation, "result" => $result];
-            setcookie('operations', json_encode($operations), time()+120, "/");
+// Initialize the operations array if not already set
+if (!isset($_SESSION['operations'])) {
+    $_SESSION['operations'] = [];
+}
+
+// Initialize variables
+$result = '';
+$current_input = isset($_POST['current_input']) ? $_POST['current_input'] : '';
+$operations = $_SESSION['operations'];
+
+// Handle the form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['clear'])) {
+        // Clear the input and result
+        $result = '';
+    } elseif (isset($_POST['num']) || isset($_POST['op'])) {
+        // Continue building the current input
+        $result = $current_input . (isset($_POST['num']) ? $_POST['num'] : $_POST['op']);
+    } elseif (isset($_POST['result'])) {
+        // Calculate the result
+        try {
+            // Evaluate the expression
+            $result = eval("return " . $current_input . ";");
+
+            // Store the operation in the session
+            $_SESSION['operations'][] = [
+                'operation' => $current_input,
+                'result' => $result
+            ];
+        } catch (Exception $e) {
+            // Handle invalid expressions
+            $result = 'Error';
         }
     }
+
+    // Update the current input
+    $current_input = $result;
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,27 +65,26 @@
             <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Brown%20Heart.png" alt="Brown Heart" width="25" height="25" id="heart2"/>
         </div>    
         <form method="POST">
-                <input type="hidden" name="current_input" id="current_input" value="<?php echo $result ?>">
-                <input type="text" class="out" name="out" value="<?php echo $result ?>" readonly autofocus >
-                <input type="submit" class="oprbtn" name="clear" value="C" id="clear">
-                <input type="submit" class="oprbtn" name="op" value="/" id="divi">
-                <input type="submit" class="oprbtn" name="op" value="*" id="pow">
-                <input type="submit" class="oprbtn" name="op" value="-" id="min">
-                
-                <input type="submit" class="numbtn" name="num" value="7" id="seven">
-                <input type="submit" class="numbtn" name="num" value="8" id="eight">
-                <input type="submit" class="numbtn" name="num" value="9" id="nine">
-                <input type="submit" class="oprbtn" name="op" value="+" id="plus">
-                <input type="submit" class="numbtn" name="num" value="4" id="four">
-                <input type="submit" class="numbtn" name="num" value="5" id="five">
-                <input type="submit" class="numbtn" name="num" value="6" id="six">
-                <input type="submit" class="numbtn" name="num" value="1" id="one">
-                <input type="submit" class="numbtn" name="num" value="2" id="two">
-                <input type="submit" class="numbtn" name="num" value="3" id="three">
-                <input type="submit" class="oprbtn" name="result" value="=" id="result">
-                <input type="submit" class="numbtn" name="num" value="0" id="zero">
-                <input type="submit" class="numbtn" name="num" value="." id="point">
-            </form>
+            <input type="hidden" name="current_input" id="current_input" value="<?php echo htmlspecialchars($current_input); ?>">
+            <input type="text" class="out" name="out" value="<?php echo htmlspecialchars($result); ?>" readonly autofocus >
+            <input type="submit" class="oprbtn" name="clear" value="C" id="clear">
+            <input type="submit" class="oprbtn" name="op" value="/" id="divi">
+            <input type="submit" class="oprbtn" name="op" value="*" id="pow">
+            <input type="submit" class="oprbtn" name="op" value="-" id="min">
+            <input type="submit" class="numbtn" name="num" value="7" id="seven">
+            <input type="submit" class="numbtn" name="num" value="8" id="eight">
+            <input type="submit" class="numbtn" name="num" value="9" id="nine">
+            <input type="submit" class="oprbtn" name="op" value="+" id="plus">
+            <input type="submit" class="numbtn" name="num" value="4" id="four">
+            <input type="submit" class="numbtn" name="num" value="5" id="five">
+            <input type="submit" class="numbtn" name="num" value="6" id="six">
+            <input type="submit" class="numbtn" name="num" value="1" id="one">
+            <input type="submit" class="numbtn" name="num" value="2" id="two">
+            <input type="submit" class="numbtn" name="num" value="3" id="three">
+            <input type="submit" class="oprbtn" name="result" value="=" id="result">
+            <input type="submit" class="numbtn" name="num" value="0" id="zero">
+            <input type="submit" class="numbtn" name="num" value="." id="point">
+        </form>
     </div>
         <div class="operations">
             <h3>Operations Book</h3>
@@ -103,26 +97,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var buttons = document.querySelectorAll('input[type="submit"]');
-        var output = document.querySelector('.out');
-        var currentInput = document.getElementById('current_input');
-
-        buttons.forEach(function(button) {
-            button.addEventListener('click', function(e) {
-                if (this.name === 'num' || this.name === 'op') {
-                    output.value += this.value;
-                    currentInput.value = output.value;
-                } else if (this.name === 'clear') {
-                    output.value = '';
-                    currentInput.value = '';
-                }
-            });
-        });
-    });
-    </script>
     <footer>
         <p>Created by <a href="https://www.linkedin.com/in/chaher-bahri/"  target="_blank" >Chaher Bahri</a></p>
         <div >
