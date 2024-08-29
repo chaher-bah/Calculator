@@ -12,8 +12,8 @@
     }
     elseif (isset($_POST['op'])){
         $result .= $_POST['op'];
-        setcookie('num', floatval($_POST['current_input']), time()+86400, "/");
-        setcookie('op', $_POST['op'], time()+86400, "/");
+        setcookie('num', floatval($_POST['current_input']), time()+120, "/");
+        setcookie('op', $_POST['op'], time()+120, "/");
     }
     elseif (isset($_POST['result'])){
         if(isset($_COOKIE['num']) && isset($_COOKIE['op'])) {
@@ -42,7 +42,7 @@
                     $result = "Error: Invalid operator.";
             }
             $operations[] = ["operation" => $operation, "result" => $result];
-            setcookie('operations', json_encode($operations), time()+86400, "/");
+            setcookie('operations', json_encode($operations), time()+120, "/");
         }
     }
 ?>

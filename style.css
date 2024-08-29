@@ -36,8 +36,16 @@ input {
     border: 0px;
     border-radius: 1.5cap;
     margin-inline:1px;
+    transition: background-color 280ms cubic-bezier(0.87, 0, 0.13, 1) 2ms;
+    cursor: pointer;
 }
 .oprbtn{background-color: #b78666;}
+.oprbtn:hover{
+    background-color: #77543e;
+}
+.numbtn:hover{
+    outline: 1.3px solid #040500;
+}
 .calc{
     zoom: 120%;
     display: flex;
