@@ -1,7 +1,7 @@
 <h1>Project overview <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Eye%20in%20Speech%20Bubble.png" alt="Eye in Speech Bubble" width="25" height="25" />:</h1>
 
 This project is a simple calculator built using PHP and CSS. It allows users to perform basic arithmetic operations such as addition, subtraction, multiplication, and division.
-The objective of this project is to get used to working with different web technologies and develop a simple code.
+The objective of this project is to get used to working with different web technologies and develop a simple app.
 <h2>Screenshot</h2>
 <img src="https://github.com/chaher-bah/Calculator/assets/114258465/e8af45f5-59d1-4fe8-be22-0bea2db79e39" alt="Screenshot of the calculator" style="width:200px;border-radius:5px">
 
