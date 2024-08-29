@@ -6,7 +6,7 @@ body{
     line-height: 1.2;
     color: #63655a;
     overflow:hidden ;
-    height: 99vh;
+    height: 93vh;
 
 }
 .container{
@@ -118,5 +118,36 @@ form{
     }
     .operations{
         height: 50vh;
+    }
+}
+footer{
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+footer div{
+    display:flex;
+    gap:2rem;
+}
+footer a{
+    color: #010103;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all .2s;
+}
+#logo{
+    font-size:2rem;
+}
+@media (max-width:1000px){
+    footer{
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+    #logo{
+        font-size: 1.5rem;
+    }
+    footer div{
+        gap: 1rem;
     }
 }

@@ -56,6 +56,8 @@
     <meta name="description" content="A simple calculator made in HTML and PHP">
     <meta name="author"  content="Bahri Chaher">
     <link  rel="stylesheet" href="./style.css">
+    <link rel='icon' href="./icon2.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Calculator</title>
     
 </head>
@@ -121,5 +123,13 @@
         });
     });
     </script>
+    <footer>
+        <p>Created by <a href="https://www.linkedin.com/in/chaher-bahri/"  target="_blank" >Chaher Bahri</a></p>
+        <div >
+        <a  href="https://www.linkedin.com/in/chaher-bahri/" target="_blank" ><i id="logo" class="fa fa-linkedin" ></i></a>
+        <a  href="https://github.com/chaher-bah"  target="_blank" ><i id="logo" class="fa fa-github" ></i></a>
+        <a href="mailto: bahrichaher.pro@gmail.com"  target="_blank" ><i id="logo" class="fa fa-envelope" ></i></a>
+        </div>
+    </footer>
 </body>
 </html>
